@@ -1,7 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash
-from init_app import mysql
 
-def registrar_consultas(app):
+def registrar_consultas(app, mysql):
     @app.route('/')
     def Index():
         cur= mysql.connection.cursor()

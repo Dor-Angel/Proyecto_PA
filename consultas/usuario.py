@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash
-from init_app import mysql
+from Consultas._init_ import mysql
 
 def register_routes(app):
     @app.route('/')
@@ -19,7 +19,7 @@ def register_routes(app):
             fecha_nac =request.form['fecha_nac']
             descripcion =request.form['descripcion']
             cur= mysql.connection.cursor()
-            cur.execute('INSERT INTO usuario (fullname,phone,email) VALUES (%s, %s ,%s)',(nombre,apellido,email,contraseña,fecha_nac,descripcion))
+            cur.execute('INSERT INTO usuario (nombre,apellido,contraseña,email,fecha_nac,descripcion) VALUES (%s, %s ,%s, %s ,%s ,%s)',(nombre,apellido,email,contraseña,fecha_nac,descripcion))
             mysql.connection.commit()
             cur.close()
             flash('usuario agregado satisfactoriamente')
@@ -41,7 +41,7 @@ def register_routes(app):
             fecha_nac =request.form['fecha_nac']
             descripcion =request.form['descripcion']
             cur=mysql.connection.cursor()
-            cur.execute('update usuario set fullname=%s, phone=%s, email=%s where id={0}'.format(id), (nombre,apellido,email,contraseña,fecha_nac,descripcion)) 
+            cur.execute('update usuario set nombre=%s, apellido=%s, email=%s contraseña=%s fecha_nac=%s descripcion=%s where id={0}'.format(id), (nombre,apellido,email,contraseña,fecha_nac,descripcion)) 
             mysql.connection.commit()
             print(id)
             cur.close()

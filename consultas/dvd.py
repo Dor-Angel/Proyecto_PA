@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, flash
-from init_app import mysql
+from Consultas._init_ import mysql
 
 def register_routes(app):
     @app.route('/dvds')
