@@ -22,7 +22,7 @@ def consultas_usuario(app, mysql):
             mysql.connection.commit()
             cur.close()
             flash('usuario agregado satisfactoriamente')
-            return redirect(url_for('Index'))
+            return render_template('usuario.html')
     @app.route('/edit/<id>')
     def get_usuario(id):
         cur=mysql.connection.cursor()
