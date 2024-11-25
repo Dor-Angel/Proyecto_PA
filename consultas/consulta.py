@@ -4,18 +4,22 @@ def registrar_consultas(app, mysql):
     @app.route('/')
     def Index():
         cur= mysql.connection.cursor()
-        cur.execute('select * from Contacts')
+        cur.execute('select * from usuario')
         data=cur.fetchall()
         cur.close()
-        return render_template('index.html',contacts=data)
+        return render_template('index.html',usuario=data)
     @app.route('/add_contact', methods=['POST'])
     def add_contact():
         if request.method=='POST':
-            fullname =request.form['fullname']
-            phone =request.form['phone']
-            email =request.form['email']
+            id_usuario=request.form['id_usuario']
+            nombre=request.form['phone']
+            apellido=request.form['email']
+            email=request.form['email']
+            contraseña=request.form['email']
+            fecha_nac=request.form['email']
+            descripcion=request.form['email']
             cur= mysql.connection.cursor()
-            cur.execute('INSERT INTO contacts (fullname,phone,email) VALUES (%s, %s ,%s)',(fullname,phone,email))
+            cur.execute('INSERT INTO usuario (id_usuario,nombre,apellido,email,contraseña,fecha_nac,descripcion) VALUES (%s, %s ,%s)',(id_usuario,nombre,apellido,email,contraseña,fecha_nac,descripcion))
             mysql.connection.commit()
             cur.close()
             flash('contacto agregado satisfactoriamente')
@@ -23,7 +27,7 @@ def registrar_consultas(app, mysql):
     @app.route('/edit/<id>')
     def get_contact(id):
         cur=mysql.connection.cursor()
-        cur.execute('select * from Contacts where id={0}'.format(id)  )
+        cur.execute('select * from usuario where id={0}'.format(id)  )
         data=cur.fetchall()
         print(data[0])
         return render_template('edit-contact.html',contact=data[0])
