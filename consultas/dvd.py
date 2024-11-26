@@ -5,7 +5,7 @@ def register_routes(app):
     @app.route('/dvds')
     def dvds():
         dvds_data = get_all_dvds()
-        return render_template('dvds.html', dvds=dvds_data)
+        return render_template('dvd.html', dvds=dvds_data)
 
     @app.route('/edit_dvd/<int:id_dvd>', methods=['GET', 'POST'])
     def edit_dvd(id_dvd):
