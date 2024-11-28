@@ -1,13 +1,13 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, session
+import MySQLdb.cursors
+from bd import iniciar_bd
 
 def consultas_usuario(app, mysql):
     @app.route('/')
     def Index():
-        cur= mysql.connection.cursor()
-        cur.execute('select * from usuario')
-        data=cur.fetchall()
-        cur.close()
-        return render_template('index.html', usuarios=data)
+        logueado = session.get('logueado', False)
+        nombre = session.get('nombre', False)
+        return render_template('index.html', logueado=logueado, nombre=nombre)
     @app.route('/add_usuario', methods=['POST'])
     def add_usuario():
         if request.method=='POST':
@@ -22,7 +22,7 @@ def consultas_usuario(app, mysql):
             mysql.connection.commit()
             cur.close()
             flash('usuario agregado satisfactoriamente')
-            return redirect(url_for('Index'))
+            return render_template('usuario.html')
     @app.route('/edit/<id>')
     def get_usuario(id):
         cur=mysql.connection.cursor()
@@ -54,3 +54,30 @@ def consultas_usuario(app, mysql):
         cur.close()
         flash('datos eliminados satisfactoriamente')
         return redirect(url_for('Index'))
+    @app.route('/acceso-login', methods=["GET","POST"])
+    def login():
+        app, mysql = iniciar_bd()
+        if request.method == 'POST' and 'txtCorreo' in request.form and 'txtPassword':
+            _correo = request.form['txtCorreo']
+            _contraseña = request.form['txtPassword']
+            
+            cur = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cur.execute('SELECT * FROM usuario WHERE email = %s AND contraseña = %s',(_correo, _contraseña,))
+            account = cur.fetchone()
+            if account:
+                session['logueado'] = True
+                session['id'] = account['id_usuario']
+                session['nombre'] = account['nombre']
+                return render_template("index.html", logueado=session['logueado'], nombre=session['nombre'])
+            else:
+                return render_template("inicio_sesion.html", mensaje="Correo o Contraseña Incorrecta")
+        return render_template ("index.html")
+    
+    @app.route('/iniciar_sesion')
+    def Iniciar_sesion():
+        return render_template ("inicio_sesion.html")
+    
+    @app.route('/cerrar_sesion')
+    def logout():
+        session.clear()
+        return render_template ("index_1.html")

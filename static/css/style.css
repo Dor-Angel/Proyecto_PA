@@ -1,0 +1,158 @@
+body {
+    background: #b92b27; 
+    background: -webkit-linear-gradient(to right,#ff5733, #f39c12); 
+    background: linear-gradient(to right, #ff5733, #f39c12); 
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+.alert{
+    background: #ff9f8e;
+}
+.caja {
+    margin: 8.5%;
+    margin-left: 30%;
+    margin-right: 30%;
+}
+
+.div_body {
+    position: relative;
+    border-radius: 15px;
+    width: 98.7%; 
+    height: 81vh;
+    margin: 10px;
+    background:linear-gradient(to right, #928f8f, white);
+    overflow: auto;
+}
+
+.navbar {
+    border-radius: 15px;
+    margin: 10px;
+    background:linear-gradient(to right, white, #928f8f);
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+}
+.navbar a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    padding: 0px 15px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    transition: color 1.5s ease, font-size 1.5s ease, transform 0.1s ease, border-radius 0.1s ease;
+    text-align: center;
+}
+
+.nav_link:hover {
+    color: rgb(255, 255, 255);
+    background-image: linear-gradient(45deg, #ff5733, #f39c12);
+    border-radius: 8px;
+    transform: scale(1.2);
+}
+
+.nav_img:hover {
+    transform: scale(1.2);
+}
+
+.navbar .links {
+    margin-right: 1.5%;
+    display: flex;
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo img {
+    margin-left: 1.5%;
+    height: 75px; 
+    width: auto; 
+    display: block; 
+}
+
+.nav-img{
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    padding: 0px 15px;
+    display: inline-block;
+    font-size: 15px;
+    font-weight: bold;
+    transition: color 1s ease, font-size 1s ease, transform 0.5s ease, border-radius 0.5s ease;
+}
+
+.user img{
+    height: 30px; 
+    width: auto; 
+}
+
+/* Carrusel en el banner */
+#banner1 .carousel-caption {
+    position: inherit;
+    padding: 0;
+}
+
+#banner1 .carousel-indicators {
+    display: none;
+}
+
+#banner1 .carousel-control-prev,
+#banner1 .carousel-control-next {
+    width: 62px;
+    height: 60px;
+    background: transparent;
+    border: #1a1a1a solid 2px;
+    opacity: 1;
+    font-size: 30px;
+    color: #131215;
+    border-radius: 60px;
+    top: 43%;
+}
+
+#banner1 .carousel-control-prev:hover,
+#banner1 .carousel-control-next:hover,
+#banner1 .carousel-control-prev:focus,
+#banner1 .carousel-control-next:focus {
+    background: transparent;
+    border: #03cafc solid 2px;
+    color: #03cafc;
+}
+
+#banner1 a.carousel-control-prev {
+    position: absolute;
+    left: 20px;
+    bottom: 10px;
+}
+
+#banner1 a.carousel-control-next {
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+}
+
+/* Carrusel en la sección de clientes */
+.clients_Carousel .carousel-caption {
+    position: inherit;
+    padding: 0;
+}
+
+#myCarousel .carousel-indicators {
+    bottom: -70px;
+}
+
+#myCarousel .carousel-indicators li {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    background: #111;
+}
+
+#myCarousel .carousel-indicators .active {
+    background: #8c8a8a;
+}
+
+#myCarousel .carousel-control-prev,
+#myCarousel .carousel-control-next {
+    display: none;
+}

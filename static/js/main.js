@@ -9,3 +9,14 @@ if(btnDelete){
         });
     });
 }
+
+const checkbox = document.getElementById('exampleCheck1');
+const passwordField = document.getElementById('exampleInputPassword1');
+
+checkbox.addEventListener('change', function() {
+    if (checkbox.checked) {
+        passwordField.type = 'text';
+    } else {
+        passwordField.type = 'password';
+    }
+});
