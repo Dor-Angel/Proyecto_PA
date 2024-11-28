@@ -85,4 +85,4 @@ def consultas_usuario(app, mysql):
     @app.route('/cerrar_sesion')
     def logout():
         session.clear()
-        return render_template ("index_1.html")
+        return render_template ("index.html")
