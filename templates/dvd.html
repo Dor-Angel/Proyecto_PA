@@ -1,0 +1,78 @@
+{% extends 'layout.html' %}
+{% block body %}
+<SCRIPT language="JavaScript">
+    // -----------------------------------------------------------------------------//
+    // Funcion para verificar que todos los campos de un form esten bien ingresados //
+    // ---------------------------------------------------------------------------- //
+    function Verificar (formulario) {
+    if (formulario.name =="datos")
+      if(checkField(formulario.fullname, isName, false ) &&
+         checkField(formulario.phone, isPhoneNumber, false ) &&
+         checkField(formulario.email, isEmail, false )){
+        return (true);
+      }else{
+        return (false);
+     }
+    };
+    </SCRIPT>
+  <div class="row">
+    <div class="col-md-5">
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <div class="card card-body">
+        <form action="/add_dvd"  method="post" name "datos" onSubmit="return Verificar(this)">
+          <div class="from-group">
+            <input type="text" name="id_rentor" id "id_rentor" placeholder="id_rentor" class="form-control">
+            <input type="text" name="nombre" id "nombre" placeholder="nombre" class="form-control">
+            <input type="text" name="descripcion" id "descripcion" placeholder="descripcion" class="form-control">
+            <input type="text" name="fecha_salida" id "fecha_nac" placeholder="fecha_salida" class="form-control">
+            <input type="text" name="genero" id "contraseña" placeholder="genero" class="form-control">
+            <input type="text" name="precio" id "contraseña" placeholder="precio" class="form-control">
+            <button type="submit" class="btn btn-primary btn-block btn-enviar" >
+              save
+            </button>
+          </div>  
+        </form>
+      </div>
+    </div>
+    <div class="col-md-7">
+      <table class="table table-striped table-bordered bg-white table-sm">
+        <thead>
+          <tr>
+            <td>id_rentor</td>
+            <td>nombre</td>
+            <td>descripcion</td>
+            <td>fecha_salida</td>
+            <td>genero</td>
+            <td>precio</td>
+          </tr>
+        </thead>
+        <tbody>
+          {% for dvd in dvds %}
+          <tr>
+            <td>{{ dvd.1 }} </td>
+            <td>{{ dvd.2 }} </td>
+            <td>{{ dvd.3 }} </td>
+            <td>{{ dvd.5 }} </td>
+            <td>{{ dvd.6 }} </td>
+            <td>
+              <a href="/edit/{{dvd.0}}" class="btn btn-secundary">edit</a>
+              <a href="/delete/{{dvd.0}}" class="btn btn-danger btn-delete">delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

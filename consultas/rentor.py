@@ -1,12 +1,25 @@
 from flask import render_template, request, redirect, url_for, flash
-from Consultas._init_ import mysql
 
-def register_routes(app):
-    @app.route('/rentors')
-    def rentors():
-        rentors_data = get_all_rentors()
-        return render_template('rentors.html', rentors=rentors_data)
 
+def consultas_usuario(app, mysql):
+    @app.route('/')
+    def rentor():
+        cur= mysql.connection.cursor()
+        cur.execute('select * from rentor')
+        rentors_data=cur.fetchall()
+        cur.close()
+        return render_template('rentor.html', rentors=rentors_data)
+    @app.route('/add_rentor', methods=['POST'])
+    def add_rentor():
+        if request.method=='POST':
+            id_usuario =request.form['id_usuario']
+            descripcion =request.form['descripcion']
+            cur= mysql.connection.cursor()
+            cur.execute('INSERT INTO usuario (id_usuario, descripcion) VALUES (%s, %s )',(id_usuario,descripcion))
+            mysql.connection.commit()
+            cur.close()
+            flash('usuario agregado satisfactoriamente')
+            return render_template('dvd.html')
     @app.route('/edit_rentor/<int:id_rentor>', methods=['GET', 'POST'])
     def edit_rentor(id_rentor):
         if request.method == 'POST':

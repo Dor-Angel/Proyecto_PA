@@ -22,7 +22,8 @@ def consultas_usuario(app, mysql):
             mysql.connection.commit()
             cur.close()
             flash('usuario agregado satisfactoriamente')
-            return render_template('usuario.html')
+        return render_template('usuario.html')
+
     @app.route('/edit/<id>')
     def get_usuario(id):
         cur=mysql.connection.cursor()
@@ -49,7 +50,11 @@ def consultas_usuario(app, mysql):
     @app.route('/delete/<string:id>')
     def delete_usuario(id):
         cur=mysql.connection.cursor()
+        cur.execute('delete from dvd where id_rentor={0}'.format(id))
+        cur.execute('delete from rentor where id_usuario={0}'.format(id))
+        
         cur.execute('delete from usuario where id_usuario={0}'.format(id))
+        
         mysql.connection.commit()
         cur.close()
         flash('datos eliminados satisfactoriamente')
