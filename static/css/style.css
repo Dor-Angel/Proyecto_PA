@@ -176,3 +176,16 @@ body {
 .carousel-caption h1 .blu {
     color: black !important;
 }
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Carrusel de la seccion de registro */
+.container {
+   
+    background: linear-gradient(to right, #928f8f, white);
+    
+}
+
