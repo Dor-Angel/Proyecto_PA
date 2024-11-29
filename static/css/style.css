@@ -101,15 +101,22 @@ body {
 #banner1 .carousel-control-next {
     width: 62px;
     height: 60px;
-    background: transparent;
-    border: #1a1a1a solid 2px;
+    border: #020202 solid 2px;
     opacity: 1;
     font-size: 30px;
     color: #131215;
     border-radius: 60px;
     top: 43%;
+    text-decoration: none;
 }
 
+#banner1 .carousel-control-prev:before {
+    content: '<';
+}
+
+#banner1 .carousel-control-next:before {
+    content: '>';
+}
 #banner1 .carousel-control-prev:hover,
 #banner1 .carousel-control-next:hover,
 #banner1 .carousel-control-prev:focus,
