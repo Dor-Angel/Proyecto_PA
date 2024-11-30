@@ -95,7 +95,3 @@ def consultas_usuario(app, mysql):
     def logout():
         session.clear()
         return render_template ("index.html")
-    
-    @app.route('/registro')
-    def registro():
-        return render_template('registro.html')
