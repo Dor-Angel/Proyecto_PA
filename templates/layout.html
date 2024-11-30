@@ -18,21 +18,23 @@
         </div>
         <div class="links">
             <a class="nav_link" href="/">Inicio</a>
-            <a class="nav_link" href="#">DvD</a>
+            <a class="nav_link" href="/dvd">DvD</a>
             {% if logueado %}
                 <div class="dropdown show dropleft">
                     <a class="user nav_img dropdown-toggle" href="#"  data-toggle="dropdown">
-                        <img class = "border border-info rounded-circle" src="https://randomuser.me/api/portraits/men/31.jpg" alt="User">
+                        <img class = "border border-info rounded-circle" src="static/img/perfil.png" alt="User">
                     </a>
                 
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a class="nav_link dropdown-item" href="#">Perfil</a>
+                        {% if es_rentor %}
+                            <a class="nav_link dropdown-item" href="/dvd_agregar">Agregar DvD</a>
+                        {% endif %}
                         <a class="nav_link dropdown-item" href="/cerrar_sesion">Salir</a>
                     </div>
                 </div>
             {% else %}
                 <a class="nav_link" href="/iniciar_sesion">Iniciar Sesion</a>
-                <a class="nav_link" href="#">Registrarse</a>
+                <a class="nav_link" href="/registro">Registrarse</a>
             {% endif %}
         </div>
     </div>

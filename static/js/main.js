@@ -20,3 +20,7 @@ checkbox.addEventListener('change', function() {
         passwordField.type = 'password';
     }
 });
+
+function confirmarRenta() {
+    return confirm("¿Estás seguro de que quieres rentar este DVD?");
+}

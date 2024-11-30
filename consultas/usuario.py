@@ -6,8 +6,13 @@ def consultas_usuario(app, mysql):
     @app.route('/')
     def Index():
         logueado = session.get('logueado', False)
+        id_usuario = session.get('id', False)
+        cur_1= mysql.connection.cursor()
+        cur_1.execute('select id_usuario from rentor where id_usuario={0}'.format(id_usuario))
+        es_rentor=bool(cur_1.fetchone())
+        cur_1.close()
         nombre = session.get('nombre', False)
-        return render_template('index.html', logueado=logueado, nombre=nombre)
+        return render_template('index.html', logueado=logueado, nombre=nombre, es_rentor=es_rentor)
     @app.route('/add_usuario', methods=['POST'])
     def add_usuario():
         if request.method=='POST':
@@ -18,13 +23,13 @@ def consultas_usuario(app, mysql):
             fecha_nac =request.form['fecha_nac']
             descripcion =request.form['descripcion']
             cur= mysql.connection.cursor()
-            cur.execute('INSERT INTO usuario (nombre, apellido, contraseña, email, fecha_nac, descripcion) VALUES (%s, %s ,%s, %s ,%s ,%s)',(nombre,apellido,email,contraseña,fecha_nac,descripcion))
+            cur.execute('INSERT INTO usuario (nombre, apellido, email, contraseña, fecha_nac, descripcion) VALUES (%s, %s ,%s, %s ,%s ,%s)',(nombre,apellido,email,contraseña,fecha_nac,descripcion))
             mysql.connection.commit()
             cur.close()
             flash('usuario agregado satisfactoriamente')
-        return render_template('usuario.html')
+        return render_template("inicio_sesion.html", mensaje="Inicie Sesion")
 
-    @app.route('/edit/<id>')
+    @app.route('/edit_usuario/<id>')
     def get_usuario(id):
         cur=mysql.connection.cursor()
         cur.execute('select * from usuario where id_usuario={0}'.format(id)  )
@@ -73,7 +78,7 @@ def consultas_usuario(app, mysql):
                 session['logueado'] = True
                 session['id'] = account['id_usuario']
                 session['nombre'] = account['nombre']
-                return render_template("index.html", logueado=session['logueado'], nombre=session['nombre'])
+                return redirect(url_for('Index'))
             else:
                 return render_template("inicio_sesion.html", mensaje="Correo o Contraseña Incorrecta")
         return render_template ("index.html")
@@ -81,6 +86,10 @@ def consultas_usuario(app, mysql):
     @app.route('/iniciar_sesion')
     def Iniciar_sesion():
         return render_template ("inicio_sesion.html")
+    
+    @app.route('/registro')
+    def registro():
+        return render_template ("registro_usuario.html")
     
     @app.route('/cerrar_sesion')
     def logout():

@@ -2,54 +2,33 @@
 {% block body %}
    <div class = "div_body">
       <div class = "caja_inicio">
-         <div id="banner1" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-               <li data-target="#banner1" data-slide-to="0" class="active"></li>
-               <li data-target="#banner1" data-slide-to="1"></li>
-               <li data-target="#banner1" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                        <div class="carousel-caption">
-                           <div class="text-bg">
-                              <h1><span class="blu">Bienvenido <br></span>Mejores Peliculas en renta</h1>
-                              <figure><img src="static/img/disco.png" alt="#" width="500"/></figure>
-                              <a class="read_more" href="#">Shop Now</a>
-                           </div>
-                        </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                        <div class="carousel-caption">
-                           <div class="text-bg">
-                              <h1><span class="blu">Welcome <br></span>To Our Sunglasses</h1>
-                              <figure><img src="static/img/banner_img.png" alt="#"/></figure>
-                              <a class="read_more" href="#">Shop Now</a>
-                           </div>
-                        </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                        <div class="carousel-caption">
-                           <div class="text-bg">
-                              <h1><span class="blu">Welcome <br></span>To Our Sunglasses</h1>
-                              <figure><img src="static/img/banner_img.png" alt="#"/></figure>
-                              <a class="read_more" href="#">Shop Now</a>
-                           </div>
-                        </div>
-                  </div>
-               </div>
+        <section class="hero">
+            <h1>¡Bienvenido a RentaPelículas!</h1>
+            <p>La mejor plataforma para alquilar tus películas favoritas, cuando quieras y donde quieras.</p>
+        </section>
+        
+        <section class="features">
+            <h2>¿Por qué elegirnos?</h2>
+            <p>Descubre las ventajas de alquilar tus películas con nosotros:</p>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3>Catálogo Extenso</h3>
+                    <p>Explora cientos de películas de todos los géneros: acción, comedia, drama, terror y mucho más.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Acceso Inmediato</h3>
+                    <p>Disfruta de tus películas al instante desde cualquier dispositivo, sin necesidad de esperar.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Precios Asequibles</h3>
+                    <p>Renta tus películas favoritas a precios que se ajustan a tu bolsillo.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Recomendaciones Personalizadas</h3>
+                    <p>Recibe sugerencias basadas en tus gustos y descubre nuevas películas que te encantarán.</p>
+                </div>
             </div>
-            <a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev">
-               <i class="fa fa-arrow-left" aria-hidden="true"></i>
-            </a>
-            <a class="carousel-control-next" href="#banner1" role="button" data-slide="next">
-               <i class="fa fa-arrow-right" aria-hidden="true"></i>
-            </a>
-         </div>
+        </section>
       </div>     
    </div> 
 {% endblock %}

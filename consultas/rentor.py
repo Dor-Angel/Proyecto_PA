@@ -1,14 +1,21 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, session
 
 
 def consultas_usuario(app, mysql):
     @app.route('/')
     def rentor():
+        logueado = session.get('logueado', False)
+        id_usuario = session.get('id', False)
+        cur_1= mysql.connection.cursor()
+        cur_1.execute('select id_usuario from rentor where id_usuario={0}'.format(id_usuario))
+        es_rentor=bool(cur_1.fetchone())
+        cur_1.close()
+        nombre = session.get('nombre', False)
         cur= mysql.connection.cursor()
         cur.execute('select * from rentor')
         rentors_data=cur.fetchall()
         cur.close()
-        return render_template('rentor.html', rentors=rentors_data)
+        return render_template('rentor.html', logueado=logueado, nombre=nombre, rentors=rentors_data, es_rentor=es_rentor)
     @app.route('/add_rentor', methods=['POST'])
     def add_rentor():
         if request.method=='POST':
